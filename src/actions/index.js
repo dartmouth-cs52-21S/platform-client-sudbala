@@ -73,17 +73,3 @@ export function deletePost(id, history) {
     });
   };
 }
-
-export function increment() {
-  return {
-    type: ActionTypes.INCREMENT,
-    payload: null,
-  };
-}
-
-export function decrement() {
-  return {
-    type: ActionTypes.DECREMENT,
-    payload: null,
-  };
-}

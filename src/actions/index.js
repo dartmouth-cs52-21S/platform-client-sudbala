@@ -16,11 +16,17 @@ const API_KEY = '?key=sudharsan_balasubramani';
 
 // We want a function that gets all posts
 export function fetchAll() {
-  axios.get(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
-    // do something with response.data  (some json)
-  }).catch((error) => {
-    // hit an error do something else!
-  });
+  return (dispatch) => {
+    // here is where we do asynch axios calls
+    // on completion of which we dispatch a new action, we can dispatch stuff now
+    axios.get(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
+      // we dispactch the action to fetch all posts, making the payload the data we get back from the api server
+      dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
+    }).catch((error) => {
+      // hit an error do something else!
+      console.log(error);
+    });
+  };
 }
 
 /// IMPORTANT! API CALLS ONLY IN HERE, NOWHERE ELSE

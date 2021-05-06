@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, NavLink, Switch,
+  BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
+import Nav from './nav';
 import Posts from './posts';
 import NewPost from './new-post';
 import Post from './post';
@@ -11,18 +12,6 @@ import Post from './post';
 // Fallback Page
 const FallBack = (props) => {
   return <div>URL Not Found</div>;
-};
-
-// Nav component, an essential component. NavLink component rather than anchor tag, which by default adds an "active" class
-const Nav = (props) => {
-  return (
-    <nav className="navbar">
-      <ul>
-        <li><NavLink exact to="/">NoSleep</NavLink></li>
-        <li><NavLink to="/posts/new">New Scare</NavLink></li>
-      </ul>
-    </nav>
-  );
 };
 
 // The App Component YuH

@@ -18,7 +18,7 @@ class Posts extends Component {
         // For each post, recall that it actually needs to be a link to the real post itself
         // Adapted from lab manual at https://cs52.me/assignments/lab/redux-platform/
         return (
-          <Link to={`/posts/${post.id}`}>
+          <Link to={`/posts/${post.id}`} key={post.id}>
             <div className="post-tile-card">
               <img className="post-tile-card-img" src={post.coverUrl} alt={post.title} />
               <h1 className="post-tile-card-title">{post.title}</h1>

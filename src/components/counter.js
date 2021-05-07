@@ -12,9 +12,10 @@ const Counter = (props) => {
 };
 
 // connects particular parts of redux state to this components props
+// Use the combined reducer state
 const mapStateToProps = (state) => (
   {
-    count: state.count,
+    count: state.,
   }
 );
 

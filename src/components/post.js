@@ -27,6 +27,12 @@ class Post extends Component {
   componentDidMount() {
     // First, let us fetch the post
     this.props.fetchPost(this.props.match.params.postID);
+    this.setState({
+      title: this.props.post.title,
+      tags: this.props.post.tags,
+      content: this.props.post.content,
+      coverUrl: this.props.post.coverUrl,
+    });
     console.log(this.props);
   }
 
@@ -135,7 +141,7 @@ class Post extends Component {
   // For deleting, learned about routing histories from https://dev.to/cesareferrari/the-history-prop-in-route-43je#:~:text=Route%20defines%20a%20history%20prop,URLs%20we%20have%20visited%20earlier.
   render() {
     return (
-      <div>
+      <div className="individual-post">
         {this.renderTitle()}
         {this.renderCoverImage()}
         {this.renderContent()}

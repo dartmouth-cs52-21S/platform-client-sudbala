@@ -20,7 +20,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <div>
+      <div className="new-post">
         <div>
           <h2>Title</h2>
           <input className="edit-title" value={this.state.title} onChange={(event) => { this.setState({ title: event.target.value }); }} />
@@ -34,7 +34,7 @@ class NewPost extends Component {
           <h3>Cover URL (GIF/IMG)</h3>
           <input className="edit-cover" value={this.state.coverUrl} onChange={(event) => { this.setState({ coverUrl: event.target.value }); }} />
         </div>
-        <div>Mini Preview</div>
+        {/* <div>Mini Preview</div> */}
         <div>
           <i
             className="fas fa-check"

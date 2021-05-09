@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    color: white;
+    font-family: 'Shadows Into Light';
+}
+
+// background overlay from https://stackoverflow.com/questions/36679649/how-to-add-a-color-overlay-to-a-background-image
+// parallax adapted from https://www.w3schools.com/howto/howto_css_parallax.asp
+body {
+    background: url('https://img.17qq.com/images/ghhhfqmhnwy.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-shadow:inset 0 0 0 4000px rgba(3, 7, 30, 0.7);
+    padding-bottom: 40rem;
+
+    // Create a parallax scrolling effect
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+// Navbar Styling
+// Sticky learned from https://stackoverflow.com/questions/58096450/how-to-have-a-sticky-navbar-in-reactjs
+.navbar {
+    background-color: #03071E;
+    box-shadow: 0 10px 5px black;
+    position: sticky;
+    z-index: 900;
+    top: 0;
+}
+
+
+.my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+  }
+  
+  /* Style your items */
+  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 30px;
+  }
+
+
+li {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+li a {
+    color: #D00000;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+li:first-of-type a {
+    color: #D00000;
+    font-size: 3.5rem;
+}
+
+li a:hover {
+    color: #6A0F0F;
+}
+
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/// Tile Card
+.post-tile-cards {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+
+.post-tile-card {
+    position: relative;
+    text-align: center;
+    color: white;
+    // z-index: -900;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // background: rgba(0, 0, 0, 0.7);
+    // margin-top: 2rem;
+    // margin-bottom: 2rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
+    // padding-left: 3rem;
+    // padding-right: 3rem;
+    // padding-top: 2rem;
+    // padding-bottom: 2rem;
+    // border-radius: 50px;
+}
+
+.post-tile-card img {
+    max-width: 250px;
+    border-radius: 50px;
+    margin-top: 4rem;
+    opacity: 0.6;
+    // z-index: -900;
+}
+
+.post-tile-card img:hover {
+    opacity: 1;
+}
+
+.post-tile-card-caption {
+    position: absolute;
+    width: 100%;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -95%);
+    // z-index: -900;
+}
+
+
+/// INDIVIDUAL POSTS
+.individual-post {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 50px;
+    background: #370617;
+}
+
+.title, .title-edit {
+    padding-bottom: 2rem;
+}
+
+.post-title, .edit-title {
+    font-size: 3rem;
+}
+
+.tags, .tags-edit {
+    padding-bottom: 2rem;
+}
+
+.post-tags, .edit-tags {
+    font-size: 1rem;
+}
+
+.content, .content-edit {
+    padding-bottom: 1rem;
+}
+
+.content, .editing-content {
+    font-size: 2rem;
+}
+
+.editing-content {
+    background: rgba(0, 0, 0, 0.363);
+}
+
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.fas, .far{
+    font-size: 2rem;
+    width: 5rem;
+    cursor: pointer;
+}
+
+.fas:hover, .far:hover {
+    opacity: 0.7;
+}
+
+/// New Post
+.new-post {
+    padding-top: 3rem;
+    padding-left: 3rem;
+}

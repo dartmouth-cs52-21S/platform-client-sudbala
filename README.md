@@ -5,7 +5,7 @@
 *Trigger Warning: Some content may be horrifying... please scare yoruself at your own discretion*/
 
 
-[deployed url](http://url-if-deployed-here)
+[deployed url](https://jolly-beaver-af496d.netlify.app/)
 
 ## What Worked Well
 * Surprisingly, the actions/actionCreators and reducers were very intuivitve to code up and create so that they may be useful for componets, when I wanted to update the redux state. I think this is because I truly understand how redux works, whcih is something I'm truly proud of. I know the order in which thigns happen and I understand why sometimes the state wouldn't update in the store and what mapStateToProps and mapDispatchToProps do. 

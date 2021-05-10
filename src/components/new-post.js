@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { createPost } from '../actions';
+import Modal from './modal';
 
 class NewPost extends Component {
   // This component locally needs to keep track of each item that will then be put into the global state.
@@ -16,6 +17,18 @@ class NewPost extends Component {
       content: '',
       coverUrl: '',
     };
+  }
+
+  showModal = (event) => {
+    this.setState({
+      show: true,
+    });
+  };
+
+  closeModal = (event) => {
+    this.setState({
+      show: false,
+    });
   }
 
   render() {
@@ -40,14 +53,20 @@ class NewPost extends Component {
             className="fas fa-check"
             role="button"
             onClick={(event) => {
-              this.props.createPost({
-                title: this.state.title,
-                tags: this.state.tags,
-                content: this.state.content,
-                coverUrl: this.state.coverUrl,
-              }, this.props.history);
+              if (this.state.title.length === 0 || this.state.tags.length === 0 || this.state.content.length === 0 || this.state.coverUrl.length === 0) {
+                this.showModal();
+              } else {
+                this.closeModal();
+                this.props.createPost({
+                  title: this.state.title,
+                  tags: this.state.tags,
+                  content: this.state.content,
+                  coverUrl: this.state.coverUrl,
+                }, this.props.history);
+              }
             }}
           />
+          <Modal show={this.state.show}>Please fill out all the fields to make your Horror Post!</Modal>
         </div>
       </div>
     );

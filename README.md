@@ -15,5 +15,8 @@
 
 ## Extra Credit
 * Got a masonry look going for the main page posts. This was done with React-Masonry-CSS
+* Horror posts is most definitely not a blog :) So.... 
+* Got some input validation for the new horror post going, checking whether all fields are full or not, if not, adding a small alert onto the page.
+* Axios error handling if the api cannot be reached, a message will be left.
 
 ## Screenshots

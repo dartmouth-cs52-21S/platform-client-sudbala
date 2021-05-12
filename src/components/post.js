@@ -33,7 +33,6 @@ class Post extends Component {
       content: this.props.post.content,
       coverUrl: this.props.post.coverUrl,
     });
-    console.log(this.props);
   }
 
   // Rendering Title
@@ -47,7 +46,7 @@ class Post extends Component {
             role="button"
             onClick={(event) => {
               this.setState({ titleEdit: false });
-              this.props.updatePost(this.props.post.id, { title: this.state.title });
+              this.props.updatePost(this.props.post._id, { title: this.state.title });
             }}
           />
         </div>
@@ -72,7 +71,7 @@ class Post extends Component {
             role="button"
             onClick={(event) => {
               this.setState({ tagsEdit: false });
-              this.props.updatePost(this.props.post.id, { tags: this.state.tags });
+              this.props.updatePost(this.props.post._id, { tags: this.state.tags });
             }}
           />
         </div>
@@ -97,7 +96,7 @@ class Post extends Component {
             role="button"
             onClick={(event) => {
               this.setState({ contentEdit: false });
-              this.props.updatePost(this.props.post.id, { content: this.state.content });
+              this.props.updatePost(this.props.post._id, { content: this.state.content });
             }}
           />
         </div>
@@ -123,7 +122,7 @@ class Post extends Component {
             role="button"
             onClick={(event) => {
               this.setState({ coverUrlEdit: false });
-              this.props.updatePost(this.props.post.id, { coverUrl: this.state.coverUrl });
+              this.props.updatePost(this.props.post._id, { coverUrl: this.state.coverUrl });
             }}
           />
         </div>
@@ -140,19 +139,24 @@ class Post extends Component {
   // Now render the entire thing
   // For deleting, learned about routing histories from https://dev.to/cesareferrari/the-history-prop-in-route-43je#:~:text=Route%20defines%20a%20history%20prop,URLs%20we%20have%20visited%20earlier.
   render() {
-    return (
-      <div className="individual-post">
-        {this.renderTitle()}
-        {this.renderCoverImage()}
-        {this.renderContent()}
-        {this.renderTags()}
-        <i
-          className="far fa-trash-alt"
-          role="button"
-          onClick={(event) => { this.props.deletePost(this.props.post.id, this.props.history); }}
-        />
-      </div>
-    );
+    console.log(this.props.error);
+    if (this.props.error) {
+      return <div>Failure to read from API</div>;
+    } else {
+      return (
+        <div className="individual-post">
+          {this.renderTitle()}
+          {this.renderCoverImage()}
+          {this.renderContent()}
+          {this.renderTags()}
+          <i
+            className="far fa-trash-alt"
+            role="button"
+            onClick={(event) => { this.props.deletePost(this.props.post._id, this.props.history); }}
+          />
+        </div>
+      );
+    }
   }
 }
 
@@ -160,6 +164,7 @@ class Post extends Component {
 const mapStateToProps = (state) => (
   {
     post: state.posts.current,
+    error: state.posts.error,
   }
 );
 

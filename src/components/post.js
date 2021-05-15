@@ -40,7 +40,7 @@ class Post extends Component {
     if (this.state.titleEdit) {
       return (
         <div className="title-edit">
-          <input className="edit-title" placeholder={this.props.post.title} onChange={(event) => { this.setState({ title: event.target.value }); }} />
+          <input className="edit-title" value={this.state.title} onChange={(event) => { this.setState({ title: event.target.value }); }} />
           <i
             className="fas fa-check"
             role="button"
@@ -54,7 +54,7 @@ class Post extends Component {
     } else {
       return (
         <div className="title">
-          <p className="post-title" onClick={(event) => { this.setState({ titleEdit: true }); }}>{this.props.post.title}</p>
+          <p className="post-title" onClick={(event) => { this.setState({ titleEdit: true, title: this.props.post.title }); }}>{this.props.post.title}</p>
         </div>
       );
     }
@@ -65,7 +65,7 @@ class Post extends Component {
     if (this.state.tagsEdit) {
       return (
         <div className="tags-edit">
-          <input className="edit-tags" placeholder={this.props.post.tags} onChange={(event) => { this.setState({ tags: event.target.value }); }} />
+          <input className="edit-tags" value={this.state.tags} onChange={(event) => { this.setState({ tags: event.target.value }); }} />
           <i
             className="fas fa-check"
             role="button"
@@ -79,7 +79,7 @@ class Post extends Component {
     } else {
       return (
         <div className="tags">
-          <p className="post-tags" onClick={(event) => { this.setState({ tagsEdit: true }); }}>{this.props.post.tags}</p>
+          <p className="post-tags" onClick={(event) => { this.setState({ tagsEdit: true, tags: this.props.post.tags }); }}>{this.props.post.tags}</p>
         </div>
       );
     }
@@ -90,7 +90,7 @@ class Post extends Component {
     if (this.state.contentEdit) {
       return (
         <div className="content-edit">
-          <TextareaAutosize className="editing-content" onChange={(event) => { this.setState({ content: event.target.value }); }} placeholder={this.props.post.content} />
+          <TextareaAutosize className="editing-content" onChange={(event) => { this.setState({ content: event.target.value }); }} value={this.state.content} />
           <i
             className="fas fa-check"
             role="button"
@@ -104,7 +104,7 @@ class Post extends Component {
     } else {
       return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-        <div className="content" onClick={() => { this.setState({ contentEdit: true }); }}>
+        <div className="content" onClick={() => { this.setState({ contentEdit: true, content: this.props.post.content }); }}>
           <ReactMarkdown>{this.props.post.content || ''}</ReactMarkdown>
         </div>
       );
@@ -116,7 +116,7 @@ class Post extends Component {
     if (this.state.coverUrlEdit) {
       return (
         <div className="cover-edit">
-          <input className="edit-cover" placeholder={this.props.post.coverUrl} onChange={(event) => { this.setState({ coverUrl: event.target.value }); }} />
+          <input className="edit-cover" value={this.state.coverUrl} onChange={(event) => { this.setState({ coverUrl: event.target.value }); }} />
           <i
             className="fas fa-check"
             role="button"
@@ -130,7 +130,11 @@ class Post extends Component {
     } else {
       return (
         <div className="cover">
-          <img className="post-cover" onDoubleClick={(event) => { this.setState({ coverUrlEdit: true }); }} src={this.props.post.coverUrl} alt={this.props.post.title} />
+          <img className="post-cover"
+            onDoubleClick={(event) => { this.setState({ coverUrlEdit: true, coverUrl: this.props.post.coverUrl }); }}
+            src={this.props.post.coverUrl}
+            alt={this.props.post.title}
+          />
         </div>
       );
     }
@@ -139,7 +143,6 @@ class Post extends Component {
   // Now render the entire thing
   // For deleting, learned about routing histories from https://dev.to/cesareferrari/the-history-prop-in-route-43je#:~:text=Route%20defines%20a%20history%20prop,URLs%20we%20have%20visited%20earlier.
   render() {
-    console.log(this.props.error);
     if (this.props.error) {
       return <div>Failure to read from API</div>;
     } else {

@@ -196,3 +196,13 @@ input {
     color: red;
     font-size: 1.2rem;
 }
+
+.sign-up-in h2 {
+    color: red;
+    cursor: pointer;
+}
+
+.sign-up-in h2:hover {
+    color: rgb(139, 0, 0);
+    cursor: pointer;
+}

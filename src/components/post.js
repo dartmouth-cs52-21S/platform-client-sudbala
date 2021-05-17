@@ -140,6 +140,21 @@ class Post extends Component {
     }
   }
 
+  renderAuthor = () => {
+    if (this.props.post.author) {
+      return (
+        <div className="title">
+          <p className="post-title">Created by: {this.props.post.author.author}</p>
+        </div>
+      );
+    }
+    return (
+      <div className="title">
+        <p className="post-title">Created by: </p>
+      </div>
+    );
+  }
+
   // Now render the entire thing
   // For deleting, learned about routing histories from https://dev.to/cesareferrari/the-history-prop-in-route-43je#:~:text=Route%20defines%20a%20history%20prop,URLs%20we%20have%20visited%20earlier.
   render() {
@@ -152,6 +167,7 @@ class Post extends Component {
           {this.renderCoverImage()}
           {this.renderContent()}
           {this.renderTags()}
+          {this.renderAuthor()}
           <i
             className="far fa-trash-alt"
             role="button"

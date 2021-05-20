@@ -12,8 +12,8 @@ export const ActionTypes = {
 };
 
 // const ROOT_URL = 'https://platform.cs52.me/api';
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://platform-api-sudbala.herokuapp.com/api';
+// export const ROOT_URL = 'http://localhost:9090/api';
+export const ROOT_URL = 'https://platform-api-sudbala.herokuapp.com/api';
 const API_KEY = '?key=sudharsan_balasubramani';
 /// IMPORTANT! API CALLS ONLY IN HERE, NOWHERE ELSE
 

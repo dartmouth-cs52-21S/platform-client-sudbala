@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import TextareaAutosize from 'react-textarea-autosize';
 import { createPost } from '../actions';
+import uploadImage from '../s3';
 import Modal from './modal';
 
 class NewPost extends Component {
@@ -15,8 +16,16 @@ class NewPost extends Component {
       title: '',
       tags: '',
       content: '',
-      coverUrl: '',
     };
+  }
+
+  onImageUpload = (event) => {
+    const file = event.target.files[0];
+    // Handle null file
+    // Get url of the file and set it to the src of preview
+    if (file) {
+      this.setState({ preview: window.URL.createObjectURL(file), file });
+    }
   }
 
   showModal = (event) => {
@@ -35,6 +44,9 @@ class NewPost extends Component {
     return (
       <div className="new-post">
         <div>
+          <img id="preview" alt="preview" src={this.state.preview} />
+          <input type="file" name="coverImage" onChange={this.onImageUpload} />
+
           <h2>Title</h2>
           <input className="edit-title" value={this.state.title} onChange={(event) => { this.setState({ title: event.target.value }); }} />
 
@@ -44,8 +56,6 @@ class NewPost extends Component {
           <h3>Content</h3>
           <TextareaAutosize className="editing-content" onChange={(event) => { this.setState({ content: event.target.value }); }} value={this.state.content} />
 
-          <h3>Cover URL (GIF/IMG)</h3>
-          <input className="edit-cover" value={this.state.coverUrl} onChange={(event) => { this.setState({ coverUrl: event.target.value }); }} />
         </div>
         {/* <div>Mini Preview</div> */}
         <div>
@@ -53,16 +63,22 @@ class NewPost extends Component {
             className="fas fa-check"
             role="button"
             onClick={(event) => {
-              if (this.state.title.length === 0 || this.state.tags.length === 0 || this.state.content.length === 0 || this.state.coverUrl.length === 0) {
+              if (this.state.title.length === 0 || this.state.tags.length === 0 || this.state.content.length === 0) {
                 this.showModal();
               } else {
                 this.closeModal();
-                this.props.createPost({
-                  title: this.state.title,
-                  tags: this.state.tags,
-                  content: this.state.content,
-                  coverUrl: this.state.coverUrl,
-                }, this.props.history);
+                if (this.state.file) {
+                  uploadImage(this.state.file).then((url) => {
+                    this.props.createPost({
+                      title: this.state.title,
+                      tags: this.state.tags,
+                      content: this.state.content,
+                      coverUrl: url,
+                    }, this.props.history);
+                  }).catch((error) => {
+                    console.log(error);
+                  });
+                }
               }
             }}
           />

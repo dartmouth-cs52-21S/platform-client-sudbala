@@ -11,6 +11,8 @@ function getSignedRequest(file) {
 // note how we return the passed in url here rather than any return value
 // since we already know what the url will be - just not that it has been uploaded
 function uploadFileToS3(signedRequest, file, url) {
+  // eslint-disable-next-line no-param-reassign
+  url += `?${(new Date()).getTime()}`;
   return new Promise((fulfill, reject) => {
     axios.put(signedRequest, file, { headers: { 'Content-Type': file.type } }).then((response) => {
       fulfill(url);
